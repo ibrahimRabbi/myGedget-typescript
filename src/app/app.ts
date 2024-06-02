@@ -2,10 +2,14 @@ import express from 'express'
 import mongoose from 'mongoose'
 import configVar from './config'
 import cors from 'cors'
+import { routes } from '../modules/myGedget/myGadjet.route'
+
 
 const app = express()
 app.use(cors())
 app.use(express.json())
+
+app.use('/api/products', routes)
 
 
  
@@ -17,7 +21,7 @@ async function main() {
 
 
 
-    app.listen(5000, () => {
+    app.listen(configVar.port, () => {
         console.log(`server is running on ${configVar.port} `)
     })
      
