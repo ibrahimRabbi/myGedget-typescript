@@ -1,12 +1,14 @@
 import express, { Request, Response } from 'express'
-import {  getAllProducts, getSingleProduct, insertProduct, updateProduct } from "./controller";
+import {  deleteProduct, getAllProducts, getSingleProduct, insertProduct, updateProduct } from "./controller";
 
 export const routes = express.Router()
 
-routes.post('/post-data', insertProduct)
+routes.post('/', insertProduct)
 
-routes.get('/get-product/:id', getSingleProduct)
+routes.get('/:id', getSingleProduct)
 
-routes.get('/get-allproduct', getAllProducts)
+routes.get('/', getAllProducts)
 
-routes.put('/update-product/:id',updateProduct)
+routes.put('/:id', updateProduct)
+
+routes.delete('/:id',deleteProduct)

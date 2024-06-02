@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { getAllData, getDataById, postData, updateData } from "./services"
+import { deleteData, getAllData, getDataById, postData, updateData } from "./services"
 import { joiValidation } from "./joi.validation";
 
 
@@ -74,6 +74,36 @@ export const getAllProducts = async (req: Request, res: Response) => {
 
 
 export const updateProduct = async (req:Request, res:Response) => {
-    const updating = await updateData(req.params.id)
-    console.log(updating)
+    
+    try {
+        const updating = await updateData(req.params.id)
+        res.status(200).json({
+            success: true,
+            message: "Product updated successfully!",
+            data: updating
+        })
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+     
+}
+
+
+export const deleteProduct = async (req: Request, res: Response) => {
+    try {
+        const deleted = await deleteData(req.params.id)
+        res.status(200).json({
+            success: true,
+            message: "Product has been deleted successfully!",
+            data: deleted
+        })
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
 }

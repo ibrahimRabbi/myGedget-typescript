@@ -21,9 +21,15 @@ export const updateData = async (id: string) => {
     const filter = { _id: id }
     const feild = { 
         $set:{
-            name: 'iphone 15 pro max'
+            name: 'redmi note 9 pro'
         }
      }
-    const updating = await productModel.findByIdAndUpdate(filter, feild)
+    const updating = await productModel.updateOne(filter, feild)
     return updating
+}
+
+
+export const deleteData = async (id: string) => {
+    const deleting = await productModel.deleteOne({ _id: id })
+    return deleting
 }
