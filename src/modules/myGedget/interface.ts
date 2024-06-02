@@ -10,7 +10,6 @@ export type Inventory = {
 
 
 export type ProductInterface = {
-    id:string,
     name: string,
     description: string,
     price: number,

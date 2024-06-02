@@ -2,7 +2,6 @@ import Joi from "joi"
 
 
 export const joiValidation = Joi.object({
-    id: Joi.string().required(),
     name: Joi.string().required().trim().max(20),
     price: Joi.number().required().max(2000),
     category: Joi.string().required().trim(),

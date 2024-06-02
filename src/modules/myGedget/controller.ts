@@ -1,11 +1,13 @@
 import { Request, Response } from "express"
-import { postData } from "./services"
+import { getAllData, getDataById, postData } from "./services"
 import { joiValidation } from "./joi.validation";
 
 
 
 
-export const postDataController = async (req: Request, res: Response) => {
+
+
+export const insertProduct = async (req: Request, res: Response) => {
 
     try {
         const { error, value } = joiValidation.validate(req?.body);
@@ -20,6 +22,46 @@ export const postDataController = async (req: Request, res: Response) => {
             success: true,
             message: "Product created successfully!",
             data: inseted
+        })
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+}
+
+
+
+
+export const getSingleProduct = async (req: Request, res: Response) => {
+    const id = req.params?.id
+
+    try {
+        const data = await getDataById(id)
+        res.status(200).json({
+            success: true,
+            message: "Product fetched successfully!",
+            data: data
+        })
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+
+}
+
+
+
+export const getAllProducts = async (req: Request, res: Response) => {
+    try {
+        const allData = await getAllData()
+        res.status(200).json({
+            success: true,
+            message: "All Product fetched successfully!",
+            data: allData
         })
     } catch (error: any) {
         res.status(500).json({
