@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { getAllData, getDataById, postData } from "./services"
+import { getAllData, getDataById, postData, updateData } from "./services"
 import { joiValidation } from "./joi.validation";
 
 
@@ -69,4 +69,11 @@ export const getAllProducts = async (req: Request, res: Response) => {
             message: error.message,
         })
     }
+}
+
+
+
+export const updateProduct = async (req:Request, res:Response) => {
+    const updating = await updateData(req.params.id)
+    console.log(updating)
 }

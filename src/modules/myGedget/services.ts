@@ -16,3 +16,14 @@ export const getAllData = async () => {
     const finding = await productModel.find()
     return finding
 }
+
+export const updateData = async (id: string) => {
+    const filter = { _id: id }
+    const feild = { 
+        $set:{
+            name: 'iphone 15 pro max'
+        }
+     }
+    const updating = await productModel.findByIdAndUpdate(filter, feild)
+    return updating
+}
