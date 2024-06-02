@@ -2,7 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import configVar from './config'
 import cors from 'cors'
-import { routes } from '../modules/myGedget/myGadjet.route'
+import { routes } from '../modules/myGedget/myGadget.route'
 
 
 const app = express()

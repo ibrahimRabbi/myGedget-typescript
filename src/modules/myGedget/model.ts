@@ -15,14 +15,17 @@ const inventorySchema = new Schema<Inventory>({
 
 const productSchema = new Schema<ProductInterface>({
     id:{type:String,required:true},
-    name: { type: String, required: true, trim: true, maxlength: [15, 'product name maximum 15 character applicable'] },
-    price: { type: Number,trim:true, required: true },
+    name: { type: String, required: true, trim: true, maxlength: [20, 'product name maximum 15 character applicable'] },
+    price: { type: Number,trim:true, max:2000, required: true },
     category: { type: String, required: true, trim: true },
     description: { type: String, required: true },
     tags: { type: [String], required: true },
     variants: { type:[variantSchema], required: true },
     inventory:{type:inventorySchema,required:true}
 })
+
+
+
 
 
 //middleWare
