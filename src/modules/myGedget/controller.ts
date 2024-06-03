@@ -56,8 +56,25 @@ export const getSingleProduct = async (req: Request, res: Response) => {
 
 
 export const getAllProducts = async (req: Request, res: Response) => {
+    const queryParam = req.query.search
+ 
+    if (queryParam) {
+        try {
+            const allData = await getAllData({ name: { $regex: queryParam, $options: 'i' } })
+            res.status(200).json({
+                success: true,
+                message: `${queryParam} search successfull`,
+                data: allData
+            })
+        } catch (error: any) {
+            res.status(500).json({
+                success: false,
+                message: error.message,
+            })
+        }
+    }
     try {
-        const allData = await getAllData()
+        const allData = await getAllData({})
         res.status(200).json({
             success: true,
             message: "All Product fetched successfully!",
@@ -107,3 +124,10 @@ export const deleteProduct = async (req: Request, res: Response) => {
         })
     }
 }
+
+
+
+// export const searchProduct = (req:Request,res:Response) => {
+//     const query = req.query
+//     console.log(query)
+// }

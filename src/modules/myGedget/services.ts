@@ -1,3 +1,4 @@
+
 import { ProductInterface } from "./interface";
 import { productModel } from "./model";
 
@@ -12,8 +13,8 @@ export const getDataById = async (id:string) => {
 }
 
 
-export const getAllData = async () => {
-    const finding = await productModel.find()
+export const getAllData = async (value:object={}) => {
+    const finding = await productModel.find(value)
     return finding
 }
 
@@ -33,3 +34,8 @@ export const deleteData = async (id: string) => {
     const deleting = await productModel.deleteOne({ _id: id })
     return deleting
 }
+
+
+// export const searchData = async (name: string) => {
+//     const searching = await productModel.find({name:{$regex:name,$option:'i'}})
+// }
