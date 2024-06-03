@@ -4,9 +4,6 @@ import { joiValidation } from "./joi.validation";
 
 
 
-
-
-
 export const insertProduct = async (req: Request, res: Response) => {
 
     try {
@@ -54,10 +51,11 @@ export const getSingleProduct = async (req: Request, res: Response) => {
 }
 
 
+/*****************************get all product and search product API**********************************/
 
 export const getAllProducts = async (req: Request, res: Response) => {
-    const queryParam = req.query.search
- 
+    const queryParam = req.query.searchTerm
+
     if (queryParam) {
         try {
             const allData = await getAllData({ name: { $regex: queryParam, $options: 'i' } })
@@ -72,21 +70,25 @@ export const getAllProducts = async (req: Request, res: Response) => {
                 message: error.message,
             })
         }
+    } else {
+        try {
+            const allData = await getAllData({})
+            res.status(200).json({
+                success: true,
+                message: "All Product fetched successfully!",
+                data: allData
+            })
+        } catch (error: any) {
+            res.status(500).json({
+                success: false,
+                message: error.message,
+            })
+        }
     }
-    try {
-        const allData = await getAllData({})
-        res.status(200).json({
-            success: true,
-            message: "All Product fetched successfully!",
-            data: allData
-        })
-    } catch (error: any) {
-        res.status(500).json({
-            success: false,
-            message: error.message,
-        })
-    }
+    
 }
+
+
 
 
 
