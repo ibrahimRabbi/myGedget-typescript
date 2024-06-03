@@ -1,16 +1,16 @@
-import express, { Request, Response } from 'express'
+import express  from 'express'
 import {  deleteProduct, getAllProducts, getSingleProduct, insertProduct,  updateProduct } from "./controller";
 
-export const routes = express.Router()
+export const productRoute = express.Router()
 
-routes.post('/', insertProduct)
+productRoute.post('/', insertProduct)
 
-routes.get('/:id', getSingleProduct)
+productRoute.get('/:id', getSingleProduct)
 
-routes.get('/', getAllProducts)
+productRoute.get('/', getAllProducts)
 
-routes.put('/:id', updateProduct)
+productRoute.put('/:id', updateProduct)
 
-routes.delete('/:id', deleteProduct)
+productRoute.delete('/:id', deleteProduct)
 
-// routes.search('/', searchProduct)
+// productRoute.search('/', searchProduct)

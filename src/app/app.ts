@@ -2,15 +2,16 @@ import express from 'express'
 import mongoose from 'mongoose'
 import configVar from './config'
 import cors from 'cors'
-import { routes } from '../modules/myGedget/myGadget.route'
+import { productRoute } from '../modules/myGedget/myGadget.route'
+import { orderRoute } from '../modules/orders/order.route'
 
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use('/api/products', routes)
-
+app.use('/api/products', productRoute)
+app.use('/api/orders', orderRoute)
 
  
 
