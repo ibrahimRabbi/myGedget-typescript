@@ -33,7 +33,7 @@ export const getAllOrders = async (req: Request, res: Response) => {
     } else {
         try {
             const data = await getAllOrderService({})
-            res.status(200).json(successObject("Orders fetched successfully",data))
+            res.status(200).json(successObject("all Orders fetched successfully",data))
         } catch (err: any) {
             res.status(404).json(errorObject('all order data not found'))
         }
