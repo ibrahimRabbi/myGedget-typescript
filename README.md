@@ -7,4 +7,4 @@ if would you like to use this app, you can simply clone this application and the
 **https://node-typescript-server.vercel.app**
 
 #### End Point
-**api/product**
+api/product
