@@ -1,9 +1,10 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import configVar from './config'
+import configVar from './app/config/config'
 import cors from 'cors'
-import { productRoute } from '../modules/myGedget/myGadget.route'
-import { orderRoute } from '../modules/orders/order.route'
+ 
+import { productRoute } from './app/modules/myGedget/myGadget.route'
+import { orderRoute } from './app/modules/orders/order.route'
 
 
 const app = express()
